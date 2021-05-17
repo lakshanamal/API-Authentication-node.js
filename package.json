@@ -1,0 +1,22 @@
+{
+  "name": "api-authentication",
+  "version": "1.0.0",
+  "description": "api authentication using node js",
+  "main": "index.js",
+  "scripts": {
+   "start":"nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lakshanamal/API-Authentication-node.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lakshanamal/API-Authentication-node.js/issues"
+  },
+  "homepage": "https://github.com/lakshanamal/API-Authentication-node.js#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
