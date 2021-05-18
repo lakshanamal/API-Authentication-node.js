@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/lakshanamal/API-Authentication-node.js#readme",
   "dependencies": {
+    "@hapi/joi": "^17.1.1",
     "express": "^4.17.1",
     "mongoose": "^5.12.9"
   }
