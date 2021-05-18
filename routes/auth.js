@@ -1,23 +1,38 @@
-const router =require('express').Router();
-const User=require('../model/User');
+const router = require("express").Router();
+const User = require("../model/User");
 
-router.post('/register', async (req,res)=>{
+//validation
+
+const Joi = require("@hapi/joi");
+const { Schema } = require("mongoose");
+
+const schema = Joi.object({
+  name: Joi.string().min(6).required(),
+  email: Joi.string().min(6).required().email(),
+  password: Joi.string().min(6).required(),
+});
+
+router.post("/register", async (req, res) => {
+  // lets validate the data before we a user
+  const { error } = schema.validate(req.body); // error eka withari enne meken
+  if (error) {return res.status(400).send(error.details[0].message);}
+  else{
     const newUser = new User({
-        name:req.body.name,
-        email:req.body.email,
-        password:req.body.password
-    });
-
-    try{
-        const savedUser=await User.save();
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+      });
+    
+      try {
+        const savedUser = await newUser.save();
         res.send(savedUser);
-    }catch(err){
+      } catch (err) {
         res.status(400).send(err);
-    }
+      }
+  }
 
-    newUser.save();
-   
-})
+ 
+});
 
 // router.get('/',(req,res)=>{
 //     const newUser = new User({
@@ -25,8 +40,7 @@ router.post('/register', async (req,res)=>{
 //         email:req.body.email,
 //         passward:req.body.passward
 //     })
-   
+
 // })
 
-
-module.exports=router;
+module.exports = router;
