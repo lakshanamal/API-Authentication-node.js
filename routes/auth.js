@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require("../model/User");
 const bcrypt=require('bcrypt');
+const jwt=require('jsonwebtoken');
 const { authValidation,loginValidate} = require("../validation");
 
 //validation
@@ -49,6 +50,8 @@ router.post('/login',async (req,res)=>{
      const validatePassword=await bcrypt.compare(req.body.password,validateUser.password);
      if(!validatePassword) return res.status(400).send("Worng password");
 
+     const token=jwt.sign({_id:validateUser.id},process.env.RANDOM_SECRET);
+     res.header('auth-token',token).send(token);
      res.send("Logged in");
 
     
