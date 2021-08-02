@@ -53,7 +53,7 @@ router.post('/login',async (req,res)=>{
      const token=jwt.sign({_id:validateUser.id},process.env.RANDOM_SECRET);
      res.header('auth-token',token).send(token);
      res.send("Logged in");
-
+    // mn mokuth kiyannema na mai
     
 })
 
